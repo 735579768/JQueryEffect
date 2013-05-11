@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="http://code.jquery.com/jquery-1.4.1.min.js" type="text/javascript"></script>
+<title>tab</title>
+</head>
+
+<body>
+<div class="kl-tab">
+<b></b>
+<ul>
+	<li class="kl-tab-nav">1</li>
+    <li class="kl-tab-nav">2</li>
+    <li class="kl-tab-nav">3</li>
+</ul>
+    <div>
+        <div class="kl-tab-div">11111</div>
+        <div class="kl-tab-div">12222</div>
+        <div class="kl-tab-div">13333</div>
+    </div>
+</div>
+
+<div class="kl-tab">
+<ul>
+	<li class="kl-tab-nav">1</li>
+    <li class="kl-tab-nav">2</li>
+    <li class="kl-tab-nav">3</li>
+</ul>
+    <div>
+        <div class="kl-tab-div">21111</div>
+        <div class="kl-tab-div">22222</div>
+        <div class="kl-tab-div">23333</div>
+    </div>
+</div>
+<script>
+$(function(){
+$.klplugin={
+	//tab切换特效
+	runtab:function(options){
+					var defaults={
+						'navhoverclsname':'navhovercls',//nav显示时候拥有的类
+						'divshowclsname':'divshowcls'//div显示的时候拥有的类
+						};
+					var opts = $.extend(defaults, options); 
+					
+					$(".kl-tab .kl-tab-div").hide();
+					$(".kl-tab .kl-tab-div:first-child").show();
+					$(".kl-tab .kl-tab-nav").bind("mouseover",function(){
+								var obj=$(this);
+								//设置hover类
+								obj.parents(".kl-tab").find(".kl-tab-nav").removeClass(opts.navhoverclsname);
+								obj.addClass(opts.navhoverclsname);
+								//隐藏掉所有的tabdiv
+								$(this).parents(".kl-tab").find(".kl-tab-div").hide();
+								$(this).parents(".kl-tab").find(".kl-tab-div").removeClass(opts.divshowclsname);
+								 //查找要显示的div
+								 obj.parents(".kl-tab").find(".kl-tab-nav").each(function(i) {
+									if($(this).html()==obj.html()){
+										obj.parents(".kl-tab").find(".kl-tab-div").eq(i).addClass(opts.divshowclsname);
+										obj.parents(".kl-tab").find(".kl-tab-div").eq(i).show();
+										}			 
+								 });
+					});
+		}
+	};
+$.klplugin.runtab({
+		'navhoverclsname':'a',//nav显示时候拥有的类
+		'divshowclsname':'b'//div显示的时候拥有的类
+		});
+	});
+</script>
+</body>
+</html>
