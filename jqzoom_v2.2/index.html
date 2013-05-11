@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>jQZoom v2.2</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.jqzoom.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+$(".jqzoom").jqueryzoom({
+				xzoom: 300, //zooming div default width(default width value is 200)
+				yzoom: 300, //zooming div default width(default height value is 200)
+				offset: 10, //zooming div default offset(default offset value is 10)
+				position: "right", //zooming div position(default position value is "right")
+ 				preload:1,
+				lens:1
+			});
+
+
+
+});
+</script>
+<link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="style/jqzoom.css" type="text/css" media="screen" />
+</head>
+<body>
+<div id="wrapper" >
+
+		<div id="header">
+				<a href="http://www.mind-projects.it"><img src="images/mylogo.jpg"></a><a href="" id="version"><h2>jQZoom  Version 2.2 </h2></a>
+		</div>
+
+		<div id="maincontent">
+
+				<p><h3 style='color:red;'>New Features</h3></p>
+				
+				<p><div><strong>0)Now you con use jQZoom inside a parent container with position:"relative"</strong></div></p>
+				<p><div><strong>1)A Zooming lens over the images</strong></div></p>
+                        <p><div><strong>2)Big Images Preload on page load</strong></div></p>
+				<p><div><strong>3)Seo improved</strong></div></p>
+				
+                       				
+
+				<h3>jQZoom allows you to realize a small magnifier window close to the image or images on your web page easily.</h3>
+				I decided to build this jQuery plugin to embed detailed big images in my B2B.So now in few steps you can have your <strong>jQZoom</strong>
+				in your website,eCommerce or whatever you want.<span style="float:left;color:#666666;width:100%;border-bottom:1px solid #333333;text-align:right;">Author: <strong><a href="mailto:info@mind-projects.it">Ing. Renzi Marco</a></strong>&nbsp;,December 2007</span><br><br>
+
+				<p>1)Simply include the <i>jqzoom.css</i> in your page.</p>
+
+				<span class="code">
+				</span>
+
+				<p>2)Include jQzoom and jQuery code</p><br>
+
+
+				<p>3)Now create a container(div is better!!) for the image or images you would like to zoom and assign to it the "<strong>jqzoom</strong>" class.Specify for each image,the <strong>jqimg</strong> attribute,to wich you are going to assign the big image path.</p>
+
+				<span class="code">
+				<xmp><div class="jqzoom"><img src="images/shoe4_small.jpg"  alt="shoe"  jqimg="images/shoe4_big.jpg"></div>
+				</xmp></span>
+
+				<p>4)Load the plugin at window load</p>
+
+				<span class="code">
+				<xmp>$(document).ready(function(){
+				$(".jqzoom").jqueryzoom();
+				});</xmp>
+				</span>
+
+				<p>You can also specify some <strong>options</strong>:</p>
+
+
+				<span class="code">
+				<xmp>$(document).ready(function(){
+			      $(".jqzoom").jqueryzoom({
+
+						xzoom: 300,		//zooming div default width(default width value is 200)
+						yzoom: 300,		//zooming div default width(default height value is 200)
+						offset: 40,		//zooming div default offset(default offset value is 10)
+						position: "right",  //zooming div position(default position value is "right")
+                                                preload: 1    , // preload of images :1 by default
+						lens:1  // lens over the image   1 by default
+					});
+				});</xmp>
+				</span>
+
+				<p>5)Sit and wait for people to tell you that what you have done is really cool!!!!:-)</p>
+								
+				<h3 style="float:left;clear:both;">Demo</h3>
+				<p>Now move the mouse over the images.</p>
+			      <div style="float:left;width:100%;clear:both;" >              
+		            <div style='float:left;width:100%;'><div class="jqzoom"  style='margin-right:5px;float:left;'><img src="images/shoe2_small.jpg"  alt="scarpa"  jqimg="images/shoe2_big.jpg"></div>
+			      </div>
+
+
+	                   <p>Inside a container with position:relative</p>
+                        <div style="border:1px solid #CCCCCC;padding:50px;float:left;clear:both;width:80%;margin-bottom:10px;"><div class="jqzoom"><img src="images/triumph_small.jpg"  alt="macchina"  jqimg="images/triumph.jpg"></div></div>
+
+
+                         <div style="float:left;width:100%;clear:both;"><div class="jqzoom"><img src="images/me_small.jpg"  alt="scarpa"  jqimg="images/me_big.jpg"></div></div>
+
+
+                </div>
+		 <span style="float:left;width:100%;height:200px;">&nbsp;</span>
+</div>
+
+
+</body>
+</html>
