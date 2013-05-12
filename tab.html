@@ -40,23 +40,25 @@ $.klplugin={
 	runtab:function(options){
 					var defaults={
 						'navhoverclsname':'navhovercls',//nav显示时候拥有的类
-						'divshowclsname':'divshowcls'//div显示的时候拥有的类
+						'divshowclsname':'divshowcls',//div显示的时候拥有的类
+						'model':'mouseover'//tab的切换模式，默认为mouseover
 						};
 					var opts = $.extend(defaults, options); 
 					
 					$(".kl-tab .kl-tab-div").hide();
 					$(".kl-tab .kl-tab-div:first-child").show();
-					$(".kl-tab .kl-tab-nav").bind("mouseover",function(){
+					$(".kl-tab .kl-tab-nav").bind(opts.model,function(){
 								var obj=$(this);
-								//设置hover类
-								obj.parents(".kl-tab").find(".kl-tab-nav").removeClass(opts.navhoverclsname);
-								obj.addClass(opts.navhoverclsname);
-								//隐藏掉所有的tabdiv
-								$(this).parents(".kl-tab").find(".kl-tab-div").hide();
-								$(this).parents(".kl-tab").find(".kl-tab-div").removeClass(opts.divshowclsname);
-								 //查找要显示的div
+								 //查找要显示的div索引
 								 obj.parents(".kl-tab").find(".kl-tab-nav").each(function(i) {
 									if($(this).html()==obj.html()){
+										//设置hover类
+										obj.parents(".kl-tab").find(".kl-tab-nav").removeClass(opts.navhoverclsname);
+										obj.addClass(opts.navhoverclsname);
+										//隐藏掉所有的tabdiv
+										obj.parents(".kl-tab").find(".kl-tab-div").hide();
+										obj.parents(".kl-tab").find(".kl-tab-div").removeClass(opts.divshowclsname);
+										
 										obj.parents(".kl-tab").find(".kl-tab-div").eq(i).addClass(opts.divshowclsname);
 										obj.parents(".kl-tab").find(".kl-tab-div").eq(i).show();
 										}			 
@@ -66,7 +68,8 @@ $.klplugin={
 	};
 $.klplugin.runtab({
 		'navhoverclsname':'a',//nav显示时候拥有的类
-		'divshowclsname':'b'//div显示的时候拥有的类
+		'divshowclsname':'b',//div显示的时候拥有的类
+		'model':'click'
 		});
 	});
 </script>
