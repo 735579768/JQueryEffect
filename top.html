@@ -1,0 +1,68 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style><!--
+body{	
+ height:2000px;
+/*为啦兼容ie6一个也不能少*/
+_background-image: url(about:blank);
+_background-attachment: fixed;        /* prevent screen flash in IE6 确保滚动条滚动时，元素不闪动*/
+}
+#toTop{width:34px; height:34px;background:url(http://zhaokeli.com/wp-content/uploads/2013/03/top.png) no-repeat;position:fixed;bottom:75px;z-index:999999;right:300px;_position: absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-75-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));}
+#toTop:hover{background:url(http://zhaokeli.com/wp-content/uploads/2013/03/top.png) 0px -34px no-repeat;}
+--></style>
+<p> </p>
+<div style="text-align: center;">
+<h1><a href="http://zhaokeli.com">访问博主</a></h1>
+</div>
+<script type="text/javascript">// <![CDATA[
+document.write('<a id="toTop" title="返回顶部" href="#" style="display:none;color:red;"></a>');
+  window.onscroll=function()
+  {
+  		var top=document.documentElement.scrollTop||document.body.scrollTop;
+	var toTop=document.getElementById("toTop");
+  		if(top>100)
+	{
+		toTop.style.display="inline";
+	}
+	else
+	{
+		toTop.style.display="none";
+	}
+  };
+  var toTop=new function()
+  {
+  		var Timer=null;
+  		function $id(id){return typeof id=="string"?document.getElementById(id):id;};
+	this.goto=function(objName)
+	{
+		$id(objName).onclick=function()
+		{
+			var top=document.documentElement.scrollTop||document.body.scrollTop;
+			startNove();
+			return false;
+		};
+		var startNove=function()
+		{
+			if(Timer)clearInterval(Timer);
+			Timer=setInterval(doMove,30);
+		};
+		var doMove=function()
+		{
+			var iSpeed=0;
+			var top=document.documentElement.scrollTop||document.body.scrollTop;
+			iSpeed=(0-top)/5;
+			iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+			if(Math.abs(iSpeed)<1&&Math.abs(0-top)<1)
+			{
+				clearInterval(Timer);
+				Timer=null;
+			}
+			window.scrollTo(0,(top+iSpeed));
+		};
+	};
+  };
+  toTop.goto("toTop");
+for(var i=0;i<100;i++){
+document.write("<div style='text-align:center;'><a href='http://zhaokeli.com'>测试内容</a>"+i+"</div>");
+	}
+// ]]></script>

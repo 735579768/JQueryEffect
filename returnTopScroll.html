@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="http://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
+<style>
+body{ height:2000px;}
+*html{ background-image:url(about:blank);background-attachment:fixed;}/*ie6下防止闪动*/
+#shangxia {position: fixed;top: 45%;right: 45%;display: block;margin-right: -480px;z-index: 999;}
+#shang, #comt, #xia {background: url(http://zhaokeli.com/wp-content/uploads/2013/03/huadong.png) no-repeat;position: relative;cursor: pointer;height: 25px;width: 29px;margin: 10px 0 0;}
+#comt {background-position: left -30px;height: 32px;}
+#xia {background-position: left -68px;}
+#shangxia{
+    _position:absolute;
+    _bottom:auto;
+    _top:expression(eval(document.documentElement.scrollTop+(document.documentElement.clientHeight-this.offsetHeight)/2));
+}
+</style>
+</head>
+<body>
+<div style="text-align:center;">
+<h1><a href="http://zhaokeli.com">访问博主</a></h1>
+</div>
+<script>
+jQuery(document).ready(function($) {
+    $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $("html") : $("body")) : $("html,body");
+    $("#shang").mouseover(function() {
+        up()
+    }).mouseout(function() {
+        clearTimeout(fq)
+    }).click(function() {
+        $body.animate({scrollTop: 0}, 400)
+    });
+    $("#xia").mouseover(function() {
+        dn()
+    }).mouseout(function() {
+        clearTimeout(fq)
+    }).click(function() {
+        $body.animate({scrollTop: $(document).height()}, 400)
+    });
+    $("#comt").click(function() {
+        $body.animate({scrollTop: $("#comments").offset().top}, 400)
+    });
+});
+function up() {
+    $wd = $(window);
+    $wd.scrollTop($wd.scrollTop() - 1);
+    fq = setTimeout("up()", 50)
+}
+;
+function dn() {
+    $wd = $(window);
+    $wd.scrollTop($wd.scrollTop() + 1);
+    fq = setTimeout("dn()", 50)
+}
+;
+for(var i=0;i<100;i++){
+	document.write("<div style='text-align:center;'><a href='http://zhaokeli.com'>测试内容</a>"+i+"</div><p>");
+	}
+</script>
+<div id="shangxia">
+<div id="shang" title="↑ 返回顶部"></div>
+<div id="comt" title="查看评论"></div>
+<div id="xia" title="↓ 移至底部"></div>
+</div>
+</body></html>
+
