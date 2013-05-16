@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="http://code.jquery.com/jquery-1.4.1.min.js" type="text/javascript"></script>
+<title>jquery animate动画弹出层一直保持在页面中间</title>
+</head>
+
+<body>
+<!--演示内容开始-->
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".showdiv").click(function(){
+	
+		var box =300;
+		
+		var th= $(window).scrollTop()+$(window).height()/1.6-box;
+		
+		var h =document.body.clientHeight;
+		
+		var rw =$(window).width()/2-box;
+		
+		$(".showbox").animate({top:th,opacity:'show',width:600,height:340,right:rw},500);
+		
+		$("body").prepend("<div class='mask'></div>");
+		
+		$(".mask").css({opacity:"0.5"}).css("height",h);
+		
+		return false;
+		
+	});
+	
+	$(".showbox .close").click(function(){
+	
+		$(this).parents(".showbox").animate({top:0,opacity: 'hide',width:0,height:0,right:0},500);
+		
+		$(".mask").fadeOut("fast");
+		
+	});
+	
+});
+</script>
+<p><style type="text/css">
+*{margin:0;padding:0;list-style-type:none;}
+/* box */
+.showbox{width:0px;height:0px;display:none;position:absolute;right:0;top:0;z-index:100;border:1px #8FA4F5 solid;padding:1px;background:#fff;}
+.showbox h2{height:25px;font-size:14px;background-color:#3366cc;position:relative;padding-left:10px;line-height:25px;color:#fff;}
+.showbox h2 a{position:absolute;right:5px;top:0;font-size:12px;color:#fff;}
+.showbox .mainlist{padding:10px;}
+.showbox .mainlist li{height:24px;line-height:24px;}
+.showbox .mainlist li span{margin:0 5px 0 0;font-family:"宋体";font-size:12px;font-weight:400;color:#ddd;}
+.showbox .mainlist li a{font-size:12px;}
+.mask{background:#666;position:absolute;z-index:99;left:0;top:0;display:none;width:100%;height:100%;opacity:0.5;filter:alpha(opacity=50);-moz-opacity:0.5;}
+</style></p>
+<div class="showbox">
+<h2>jquery 浮动层、弹出层<a href="#" class="close">关闭</a></h2>
+<div class="mainlist">
+<ul>
+    <li><span>▪</span><a target="_blank" href="http://www.jsfoot.com/jquery/popup/2012-04-14/563.html">用jquery特效制作左侧侧边浮动导航菜单滑动显示或隐藏</a></li>
+    <li><span>▪</span><a target="_blank" href="http://www.jsfoot.com/jquery/popup/2011-09-21/195.html">jquery 弹出层 点击按钮弹出层兼容IE和firefox浏览器</a></li>
+    <li><span>▪</span><a target="_blank" href="http://www.jsfoot.com/jquery/popup/2012-04-10/549.html">jquery浮动层制作右下角float浮动提示框向上滑动提示</a></li>
+    <li><span>▪</span><a target="_blank" href="http://www.jsfoot.com/jquery/popup/2011-09-27/211.html">jquery smartFloat插件制作仿淘宝产品列表页默认排序搜索框</a></li>
+    <li><span>▪</span><a target="_blank" href="http://www.jsfoot.com/jquery/popup/2011-09-27/209.html">jquery 万能float浮动层插件 制作QQ MSN 旺旺在线客服功能</a></li>
+    <li><span>▪</span><a target="_blank" href="http://www.jsfoot.com/jquery/popup/2011-09-18/185.html">jquery 制作鼠标点击描点a标签返回顶部</a></li>
+    <li><span>▪</span><a target="_blank" href="http://www.jsfoot.com/jquery/popup/2011-09-13/183.html">jquery 弹出层插件 鼠标点击文字获取标题弹出层内容信息</a></li>
+    <li><span>▪</span><a target="_blank" href="http://www.jsfoot.com/jquery/popup/2011-09-12/181.html">jquery 图片提示 交互式图片滑过与点击提示更多文字信息和弹出层信息</a></li>
+    <li><span>▪</span><a target="_blank" href="http://www.jsfoot.com/jquery/popup/2011-08-31/157.html">jquery 弹出层插件 ThickBox 多功能弹出层插件支持图片、ajax、内嵌内容弹等</a></li>
+    <li><span>▪</span><a target="_blank" href="http://www.jsfoot.com/jquery/popup/2011-07-30/90.html">jquery 弹出层插件FancyBox弹出层演示支持图片、文章内容、flash swf弹出层等</a></li>
+    <li><span>▪</span><a target="_blank" href="http://www.jsfoot.com/jquery/popup/2011-02-19/20.html">jquery 信息提示对话框 用CSS3更换一个确认对话框</a></li>
+    <li><span>▪</span><a target="_blank" href="http://www.jsfoot.com/jquery/popup/2011-02-22/46.html">jquery 文本框提示顶部弹跳框使用jQuery和CSS3的插件</a></li>
+</ul>
+</div>
+</div>
+<p align="center" style="font-size:18px;font-family:微软雅黑;margin:100px 0 0 0;"><a href="#" class="showdiv">jquery动画效果弹出层</a></p>
+<!--演示内容结束-->
+
+</body>
+</html>
