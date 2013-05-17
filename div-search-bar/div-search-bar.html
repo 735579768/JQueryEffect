@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<HTML>
+<HEAD>
+<TITLE>搜索条</TITLE>
+<META NAME="Generator" CONTENT="EditPlus">
+<META NAME="Author" CONTENT="">
+<META NAME="Keywords" CONTENT="">
+<META NAME="Description" CONTENT="">
+<style>
+/*basic*/
+*{padding:0;margin:0;color:#000;font:12px/20px Arial,Sans-serif,"宋体";}
+/*elements*/
+.clear{clear:both;height:0px;overflow:hidden;}
+ul,li,ol{list-style-type:none;list-style-position:outside;}
+button,.btnNormal{height:22px;line-height:18px;padding:0 9px!important;padding:0 5px;}
+a{color:#0042ff;text-decoration:underline;}
+a,a *{cursor:pointer;}
+a img{border:0;}
+.searchTool{float:left;width:520px;}
+.searchTool .searchExtend{float:left;line-height:24px;_padding-top:5px;}
+.searchTool .radio{vertical-align:middle;margin-left:10px;margin-right:2px;*margin-right:0;}
+.searchTool .txtSearch{float:left;width:232px;padding:2px 2px 0 2px;height:20px;line-height:20px;vertical-align:bottom;border:1px solid #3e99d4;}
+.searchTool .selSearch{float:left;width:60px;background:#fff;height:22px;line-height:22px;border:1px solid #3e99d4;border-left:0;}
+.searchTool .nowSearch{float:left;width:40px;height:20px;line-height:22px;overflow:hidden;padding-left:4px;}
+.searchTool .btnSel{float:right;border-left:1px solid #3e99d4;width:14px;height:22px;}
+.searchTool .btnSel a{background:url(http://static.youku.com/v1.0.0217/index/img/btn_sel.gif) no-repeat center center;display:block;width:14px;height:22px;}
+.searchTool .btnSel a:hover{background:url(http://static.youku.com/v1.0.0217/index/img/btn_sel_over.gif) no-repeat center center;border:1px solid #fff;width:12px;height:20px;}
+.searchTool .selOption{z-index:9999;position:absolute;margin-left:-1px;width:60px;background:#fff;border:1px solid #3e99d4;}
+.searchTool .selOption a{display:block;height:21px;padding-left:5px;line-height:21px;color:#000;text-decoration:none;}
+.searchTool .selOption a:hover{color:#fff;background:#95d5f1;}
+.searchTool .btnSearch{float:left;margin-left:10px;width:58px;height:22px;line-height:22px;border:1px solid #3e99d4;overflow:hidden;}
+.searchTool .btnSearch a{background:url(images/bg_nav_option.gif) repeat-x center -6px;display:block;text-decoration:none;height:22px;line-height:22px;overflow:hidden;}
+.searchTool .btnSearch a:hover{background:url(images/bg_nav_option_over.gif) repeat-x center center;border:1px solid #fff;height:20px;line-height:20px;}
+.searchTool .btnSearch .lbl{cursor:pointer;display:block;width:40px;padding-left:5px;letter-spacing:5px;text-align:center;height:18px;padding-top:1px;margin:0 auto;filter:progid:DXImageTransform.Microsoft.DropShadow(color=#daeefa,offX=1,offY=1,positives=true);}
+.searchTool .btnSearch a:hover .lbl{padding-top:0px;}
+</style>
+<script>
+function drop_mouseover(pos){
+ try{window.clearTimeout(timer);}catch(e){}
+}
+function drop_mouseout(pos){
+ var posSel=document.getElementById(pos+"Sel").style.display;
+ if(posSel=="block"){
+  timer = setTimeout("drop_hide('"+pos+"')", 1000);
+ }
+}
+function drop_hide(pos){
+ document.getElementById(pos+"Sel").style.display="none";
+}
+function search_show(pos,searchType,href){
+    document.getElementById(pos+"SearchType").value=searchType;
+    document.getElementById(pos+"Sel").style.display="none";
+    document.getElementById(pos+"Slected").innerHTML=href.innerHTML;
+    document.getElementById(pos+'q').focus();
+    var sE = document.getElementById("searchExtend");
+    if(sE != undefined  &&  searchType == "bar"){
+     sE.style.display="block";
+    }else if(sE != undefined){
+     sE.style.display="none";
+    }
+ try{window.clearTimeout(timer);}catch(e){}
+ return false;
+}
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</HEAD>
+<BODY>
+<div class="searchTool">
+<form method="get" action="http://so.youku.com/search_playlist" name="headSearchForm" id="headSearchForm" onsubmit="return dosearch(this);">
+     <input class="txtSearch" id="headq" name="q" type="text" value="闯关东" />
+     <input name="searchdomain" type="hidden" value="http://so.youku.com">
+     <input id="headSearchType" name="searchType" type="hidden" value="playlist">
+     <div class="selSearch">
+    <div class="nowSearch" id="headSlected" onclick="if(document.getElementById('headSel').style.display=='none'){document.getElementById('headSel').style.display='block';}else {document.getElementById('headSel').style.display='none';};return false;" onmouseout="drop_mouseout('head');">专辑</div>
+    <div class="btnSel"><a href="#" onclick="if(document.getElementById('headSel').style.display=='none'){document.getElementById('headSel').style.display='block';}else {document.getElementById('headSel').style.display='none';};return false;" onmouseout="drop_mouseout('head');"></a></div>
+    <div class="clear"></div>
+    <ul class="selOption" id="headSel" style="display:none;">
+     <li><a href="#" onclick="return search_show('head','video',this)" onmouseover="drop_mouseover('head');" onmouseout="drop_mouseout('head');">视频</a></li>
+     <li><a href="#" onclick="return search_show('head','playlist',this)" onmouseover="drop_mouseover('head');" onmouseout="drop_mouseout('head');">专辑</a></li>
+     <li><a href="#" onclick="return search_show('head','user',this)" onmouseover="drop_mouseover('head');" onmouseout="drop_mouseout('head');">会员</a></li>
+     <li><a href="#" onclick="return search_show('head','bar',this)" onmouseover="drop_mouseover('head');" onmouseout="drop_mouseout('head');">看吧</a></li>
+     <li><a href="#" onclick="return search_show('head','pk',this)" onmouseover="drop_mouseover('head');" onmouseout="drop_mouseout('head');">PK擂台</a></li>
+    </ul>
+     </div>
+     <div class="btnSearch">
+    <a href="#" onclick="javascript:return dosearch(document.getElementById('headSearchForm'));"><span class="lbl">搜索</span></a>
+     </div>
+          <div class="searchExtend" id="searchExtend" name="searchExtend" style="display:none">
+           <input type="radio" class="radio" name="sbt" value="post" onclick="csbt(this,this.form.sbts);" />搜贴子<input type="radio" name="sbt" value="user" onclick="csbt(this,this.form.sbts);" class="radio" />按作者搜<input type="hidden" name="sbts" value="bar">
+     </div>
+          <div class="clear"></div>
+     </form>
+   </div>
+   <div class="clear"></div>
+  </div>
+ </div>
+</BODY>
+</HTML>
