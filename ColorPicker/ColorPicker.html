@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="http://code.jquery.com/jquery-1.4.2.min.js" type="text/javascript"></script>
+<title>jquery点击颜色选择器取值，颜色选择器ColorPicker</title>
+</head>
+
+<body>
+<!--演示内容开始-->
+<p><style type="text/css">
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+body{font:12px/180% Arial, Helvetica, sans-serifl;color:#5a5a5a;}
+/* pagedemo */
+.pagedemo{width:700px;margin:0 auto;text-align:left;}
+.pagedemo h1{font-size:21px;height:47px;line-height:47px;text-transform:uppercase;}
+.tabsContent{border:1px solid #ccc;width:698px;overflow:hidden;}
+.tab{padding:16px;}
+.tab h2{font-weight:bold;font-size:16px;}
+.tab h3{font-weight:bold;font-size:14px;margin-top:20px;}
+.tab p{margin-top:16px;clear:both;}
+.tab ul{margin-top:16px;list-style:disc;}
+.tab li{margin:10px 0 0 35px;float:none;text-align:left;}
+.tab a{color:#8FB0CF;float:none;}
+.tab strong{font-weight:bold;}
+.tab pre{font-size:11px;margin-top:20px;width:668px;overflow:auto;clear:both;}
+.tab table{width:100%;}
+.tab table td{padding:6px 10px 6px 0;vertical-align:top;}
+.tab dt{margin-top:16px;}
+/* colorSelector */
+#colorSelector{position:relative;width:36px;height:36px;background:url(images/select.png);}
+#colorSelector div{position:absolute;top:3px;left:3px;width:30px;height:30px;background:url(images/select.png) center;}
+#colorSelector2{position:absolute;top:0;left:0;width:36px;height:36px;background:url(images/select2.png);}
+#colorSelector2 div{position:absolute;top:4px;left:4px;width:28px;height:28px;background:url(images/select2.png) center;}
+#colorpickerHolder2{top:32px;left:0;width:356px;height:0;overflow:hidden;position:absolute;}
+#colorpickerHolder2 .colorpicker{background-image:url(images/custom_background.png);position:absolute;bottom:0;left:0;}
+#colorpickerHolder2 .colorpicker_hue div{background-image:url(images/custom_indic.gif);}
+#colorpickerHolder2 .colorpicker_hex{background-image:url(images/custom_hex.png);}
+#colorpickerHolder2 .colorpicker_rgb_r{background-image:url(images/custom_rgb_r.png);}
+#colorpickerHolder2 .colorpicker_rgb_g{background-image:url(images/custom_rgb_g.png);}
+#colorpickerHolder2 .colorpicker_rgb_b{background-image:url(images/custom_rgb_b.png);}
+#colorpickerHolder2 .colorpicker_hsb_s{background-image:url(images/custom_hsb_s.png);display:none;}
+#colorpickerHolder2 .colorpicker_hsb_h{background-image:url(images/custom_hsb_h.png);display:none;}
+#colorpickerHolder2 .colorpicker_hsb_b{background-image:url(images/custom_hsb_b.png);display:none;}
+#colorpickerHolder2 .colorpicker_submit{background-image:url(images/custom_submit.png);}
+#colorpickerHolder2 .colorpicker input{color:#778398;}
+#customWidget{position:relative;height:36px;}</style>
+<link rel="stylesheet" type="text/css" href="css/colorpicker.css" /><script type="text/javascript" src="js/colorpicker.js"></script><script type="text/javascript">
+$(function(){
+	$('#colorpickerHolder').ColorPicker({flat: true});
+	
+	$('#colorpickerHolder2').ColorPicker({
+		flat: true,
+		color: '#00ff00',
+		onSubmit: function(hsb, hex, rgb) {
+			$('#colorSelector2 div').css('backgroundColor', '#' + hex);
+		}
+	});
+	$('#colorpickerHolder2>div').css('position', 'absolute');
+	var widt = false;
+	$('#colorSelector2').bind('click', function() {
+		$('#colorpickerHolder2').stop().animate({height: widt ? 0 : 173}, 500);
+		widt = !widt;
+	});
+	
+	$('#colorpickerField1, #colorpickerField2, #colorpickerField3').ColorPicker({
+		onSubmit: function(hsb, hex, rgb, el) {
+			$(el).val(hex);
+			$(el).ColorPickerHide();
+		},
+		onBeforeShow: function () {
+			$(this).ColorPickerSetColor(this.value);
+		}
+	})
+	.bind('keyup', function(){
+		$(this).ColorPickerSetColor(this.value);
+	});
+	$('#colorSelector').ColorPicker({
+		color: '#0000ff',
+		onShow: function (colpkr) {
+			$(colpkr).fadeIn(500);
+			return false;
+		},
+		onHide: function (colpkr) {
+			$(colpkr).fadeOut(500);
+			return false;
+		},
+		onChange: function (hsb, hex, rgb) {
+			$('#colorSelector div').css('backgroundColor', '#' + hex);
+		}
+	});
+});
+</script></p>
+<div class="pagedemo">
+<h1>颜色选择器 - jQuery ColorPicker.js 插件</h1>
+<div class="tabsContent">
+<div class="tab">
+<h2>介绍</h2>
+<p>一个简单的组件来选择色彩在你选择的颜色一样Adobe Photoshop</p>
+<h3>特征</h3>
+<ul>
+    <li>在页面元素平面模式</li>
+    <li>颜色选择功能强大的控件</li>
+    <li>容易定制通过改变一些图像的外观</li>
+    <li>可视选择器颜色变化</li>
+</ul>
+<h3>例子</h3>
+<p>平面模式</p>
+<p id="colorpickerHolder">&nbsp;</p>
+<pre>
+$('#colorpickerHolder').ColorPicker({flat: true});
+                </pre>
+<p>自定义皮肤，并使用平面模式显示在一个自定义的颜色选择器部件。.</p>
+<div id="customWidget">
+<div id="colorSelector2">
+<div style="background-color: #00ff00">&nbsp;</div>
+</div>
+<div id="colorpickerHolder2">&nbsp;</div>
+</div>
+<p>附加到一个文本字段，并使用回调函数来更新字段的值的颜色，并提交颜色设置在该领域的值。</p>
+<p><input type="text" value="00ff00" size="6" maxlength="6" id="colorpickerField1" /></p>
+<p><input type="text" value="0000ff" size="6" maxlength="6" id="colorpickerField3" /></p>
+<p><input type="text" value="ff0000" size="6" maxlength="6" id="colorpickerField2" /></p>
+<pre>
+$('#colorpickerField1, #colorpickerField2, #colorpickerField3').ColorPicker({
+	onSubmit: function(hsb, hex, rgb, el) {
+		$(el).val(hex);
+		$(el).ColorPickerHide();
+	},
+	onBeforeShow: function () {
+		$(this).ColorPickerSetColor(this.value);
+	}
+})
+.bind('keyup', function(){
+	$(this).ColorPickerSetColor(this.value);
+});
+</pre>
+<p>使用回调的实现预览的颜色和添加颜色动画。</p>
+<p>&nbsp;</p>
+<div id="colorSelector">
+<div style="background-color: #0000ff">&nbsp;</div>
+</div>
+<p>&nbsp;</p>
+<pre>
+$('#colorSelector').ColorPicker({
+	color: '#0000ff',
+	onShow: function (colpkr) {
+		$(colpkr).fadeIn(500);
+		return false;
+	},
+	onHide: function (colpkr) {
+		$(colpkr).fadeOut(500);
+		return false;
+	},
+	onChange: function (hsb, hex, rgb) {
+		$('#colorSelector div').css('backgroundColor', '#' + hex);
+	}
+});
+</pre>
+</div>
+</div>
+</div>
+<!--演示内容结束-->
+
+</body>
+</html>
