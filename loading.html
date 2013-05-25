@@ -27,23 +27,24 @@ $(document).ready(function(){
 	});
 });
 function alertMsg(msg){
-			var h = $(document).height();
+		$("body").append("<div class='overlay'></div><div class='showbox' id='AjaxLoading'><div class='loadingWord'>加载中，请稍候...</div></div>");
+		var h = $(document).height();
 		$(".overlay").css({"height": h });	
 		$(".overlay").css({'display':'block','opacity':'0.8'});
 		$(".showbox").stop(true).animate({'margin-top':'300px','opacity':'1'},200);
 		$(".loadingWord").html(msg);
 		setTimeout(function(){	
-			$(".showbox").stop(true).animate({'margin-top':'250px','opacity':'0'},400);
-			$(".overlay").css({'display':'none','opacity':'0'});
+			$(".showbox").stop(true).animate({'margin-top':'250px','opacity':'0'},400,function(){
+				$(".overlay").remove();
+				$(this).remove();
+				});
+			//$(".overlay").css({'display':'none','opacity':'0'});
 		},800);
 	}
 </script>
 <div class="demo"><a href="javascript:void(0);" class="action">jquery float浮动层弹出层页面加载特效</a></div>
 
-<div class="overlay">&nbsp;</div>
-<div class="showbox" id="AjaxLoading">
-<div class="loadingWord">加载中，请稍候...</div>
-</div>
+
 
 <div style="height:1200px;">&nbsp;</div>
 
