@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>基于jquery弹出层插件Lee dialog1.0-</title>
+<script type="text/javascript" src="jquery-latest.pack.js"></script>
+<script type="text/javascript" src="dialog.js"></script>
+<script type="text/javascript">
+$(function(){
+
+$("#form1").submit(function(){
+  var str=escape($("#str").val());
+  dialog("我的标题","url=test.html","200px","auto","form");
+  return false;
+});
+$("#bt1").click(function(){
+  dialog("我的标题","test.html","200px","auto","text");
+});
+$("#bt2").click(function(){
+  dialog("我的标题","text:我的内容","200px","auto","text");
+});
+$("#bt3").click(function(){
+  dialog("我的标题","id:testID","300px","auto","id");
+});
+$("#bt4").click(function(){
+  dialog("51xuediannao","iframe:http://www.51xuediannao.com","500px","500px","iframe");
+});
+
+
+});
+</script>
+<style type="text/css">
+body{padding:50px 0;margin:0;background:#333;font-size:12px;line-height:14px;}
+form,ul,ol,h1,h2,h3,h4,h5,h6,p{margin:0;padding:0;}
+input,textarea,select,button{font-size:12px;}
+img{border:none;}
+em{font-style:normal;}
+cite,small,address{font-size:12px;font-style:normal;color:#999;}
+a{color:#00f;text-decoration:underline;}
+
+/*浮层*/
+#floatBoxBg{width:100%;height:100%;background:#000;filter:alpha(opacity=50);opacity:0.5;position:absolute;top:0;left:0;}
+.floatBox{border:#666 5px solid;width:300px;position:absolute;top:50px;left:40%;}
+.floatBox .title{height:23px;padding:7px 10px 0;background:#333;color:#fff;}
+.floatBox .title h4{float:left;padding:0;margin:0;font-size:14px;line-height:16px;}
+.floatBox .title span{float:right;cursor:pointer;}
+.floatBox .content{padding:20px 15px;background:#fff;}
+
+/*页面*/
+#box{padding:20px;margin:0 50px;background:#999;font-size:14px;}
+#box h1{font-size:40px;line-height:50px;height:90px;}
+#box #testFloatBox{position:static;margin:20px 0;}
+#box table{margin:20px 0;}
+#box h3{font-size:16px;padding:20px 0 10px;}
+code{font-size:12px;color:#333;margin:10px;display:block;}
+#box ol{margin:0;padding:0;list-style-position:inside;list-style-type:decimal;}
+#box ol li{margin:0 0 20px 0;line-height:18px;}
+#box ol li span{color:#00f;text-decoration:underline;cursor:pointer;}
+#box ol li strong{display:block;}
+body .iframe .content{padding:0;}
+#box .title span{font-size:12px;}
+#box p{line-height:18px;}
+</style>
+</head>
+<body>
+<div id="box">
+  <h1>基于jquery弹出层插件Lee dialog1.0</h1>
+  <div id="testFloatBox" class="floatBox">
+    <div class="title">
+      <h4>标题</h4>
+      <span>关闭</span></div>
+    <div class="content">内容</div>
+  </div>
+  <p> 弹出层的html如下： <code>&lt;div id=&quot;floatBoxBg&quot;&gt;&lt;/div&gt;<br />
+    &lt;div id=&quot;floatBox&quot; class=&quot;floatBox&quot;&gt;<br />
+    &lt;div class=&quot;title&quot;&gt;&lt;h4&gt;标题&lt;/h4&gt;&lt;span&gt;关闭&lt;/span&gt;&lt;/div&gt;<br />
+    &lt;div class=&quot;content&quot;&gt;内容&lt;/div&gt;<br />
+    &lt;/div&gt;</code> css默认样式如下：<code>#floatBoxBg{width:100%;height:100%;background:#000;filter:alpha(opacity=50);opacity:0.5;position:absolute;top:0;left:0;}<br />
+    .floatBox{border:#666 5px solid;width:300px;position:absolute;top:50px;left:40%;}<br />
+    .floatBox .title{height:23px;padding:7px 10px 0;background:#333;color:#fff;}<br />
+    .floatBox .title h4{float:left;padding:0;margin:0;font-size:14px;line-height:16px;}<br />
+    .floatBox .title span{float:right;cursor:pointer;}<br />
+    .floatBox .content{padding:20px 15px;background:#fff;}<br />
+    </code></p>
+  <h3>参数：</h3>
+  <table width="0" border="1" cellpadding="5" cellspacing="0">
+    <tr>
+      <th scope="col">顺序</th>
+      <th scope="col">参数</th>
+      <th scope="col">功能</th>
+      <th colspan="2" scope="col">备注</th>
+    </tr>
+    <tr>
+      <th scope="row">1</th>
+      <th scope="row">title</th>
+      <td>弹出层的标题</td>
+      <td colspan="2">必填，纯文本</td>
+    </tr>
+    <tr>
+      <th rowspan="4" scope="row">2</th>
+      <th rowspan="4" scope="row">content</th>
+      <td rowspan="4">弹出层的内容</td>
+      <td>:url</td>
+      <td>get或post某一页面里的html，该页面要求只包含body的子标签</td>
+    </tr>
+    <tr>
+      <td>:text</td>
+      <td>直接写入内容</td>
+    </tr>
+    <tr>
+      <td>:id</td>
+      <td>显示页面里某id的子标签</td>
+    </tr>
+    <tr>
+      <td>:iframe</td>
+      <td>层内内容以框架显示</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <th scope="row">width</th>
+      <td>弹出层的宽</td>
+      <td colspan="2">必填，css值，比如“200px”</td>
+    </tr>
+    <tr>
+      <th scope="row">4</th>
+      <th scope="row">height</th>
+      <td>弹出层的高</td>
+      <td colspan="2">如上，但是可用“auto”</td>
+    </tr>
+    <tr>
+      <th scope="row">5</th>
+      <th scope="row">cssName</th>
+      <td>弹出层的css</td>
+      <td colspan="2">给id floatBox加入的样式名，层内样式可以通过这个样式名来定制</td>
+    </tr>
+  </table>
+
+  <h3>应用：</h3>
+  <p>dialog(title,content,width,height,cssName);</p>
+  <h3>演示：</h3>
+  <ol>
+    <li><strong>post提交表单返回信息</strong>$(&quot;#form1&quot;).submit(function(){<br />
+      var str=escape($(&quot;#str&quot;).val());<br />
+      dialog(&quot;我的标题&quot;,&quot;url:post?test.asp?str=&quot;+str+&quot;&quot;,&quot;200px&quot;,&quot;auto&quot;,&quot;from&quot;);<br />
+      return false;<br />
+      });
+      <form id="form1" name="form1" method="post" action="">
+        <label>
+        <input name="str" type="text" id="str" value="test" />
+        </label>
+        <button type="submit">试试</button>
+      </form>
+      <strong>get加载一个.html文件（也可以是.php/.asp?id=4之类的）</strong> dialog(&quot;我的标题&quot;,&quot;test.html&quot;,&quot;200px&quot;,&quot;auto&quot;,&quot;text&quot;); <span id="bt1">试试</span></li>
+    <li><strong>弹出纯文本内容</strong> dialog(&quot;我的标题&quot;,&quot;text:我的内容&quot;,&quot;200px&quot;,&quot;auto&quot;,&quot;text&quot;); <span id="bt2">试试</span></li>
+    <li><strong>弹出某id里面的html</strong>页面有&lt;div id=&quot;testID&quot; style=&quot;display:none;&quot;&gt;&lt;h2&gt;Lee dialog&lt;/h2&gt;&lt;/div&gt;<br />
+      dialog(&quot;我的标题&quot;,&quot;id:testID&quot;,&quot;300px&quot;,&quot;auto&quot;,&quot;id&quot;); <span id="bt3">试试</span>
+      <div id="testID" style="display:none;">
+        <h2>Lee dialog</h2>
+      </div>
+    </li>
+    <li><strong>加载一个页面以框架示</strong> 把 懒人建站 加载进来，定义css:body .iframe .content{padding:0;}复盖一下，因为.content默认padding:20px;<br />
+      dialog(&quot;51xuediannao&quot;,&quot;iframe:http://zhaokeli.com&quot;,&quot;500px&quot;,&quot;500px&quot;,&quot;iframe&quot;); <span id="bt4">试试</span> </li>
+  </ol>
+</div>
+</body>
+</html>
