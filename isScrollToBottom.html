@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>判断滚动条到页面最下面</title>
+</head>
+<style>
+body{ height:8000px;}
+.msg{ position:fixed; bottom:0px; right:0px;}
+</style>
+
+<body>
+<div id="msg" class="msg"></div>
+<script>
+
+window.onscroll=function(){
+//取网页卷上去的高度
+h1=document.body.scrollTop?document.body.scrollTop:document.documentElement.scrollTop;
+//取网页中能看到高
+h2=document.documentElement.clientHeight?document.documentElement.clientHeight:document.body.clientHeight
+//取网页正文高，包含被卷上去的内容
+h3=document.documentElement.scrollHeight?document.documentElement.scrollHeight:document.body.scrollHeight;
+if((h1+h2)==h3){
+ alert('滚动条已经到最下面啦');
+}else{
+	document.getElementById('msg').innerHTML='h1='+h1+'; h2='+h2+'; h3='+h3+'滚动条位置还没有到最下面，当前的位置是'+(h1+h2)+'总高度是'+h3;
+//window.status='h1='+h1+'; h2='+h2+'; h3='+h3+'滚动条位置还没有到最下面，当前的位置是'+(h1+h2)+'总高度是'+h3;
+}	
+	};
+
+</script>
+</body>
+</html>
