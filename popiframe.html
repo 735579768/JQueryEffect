@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>我的jquery</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+<script type="text/javascript">
+ //拖拽窗口
+ $(function(){
+  var x,y;
+  var i=0;
+ $(".tanchu .tanchutit").mousedown(function(e){
+	 alert();
+   i=1;
+   x = e.pageX-parseInt($(".tanchu").css("left"));
+   y = e.pageY-parseInt($(".tanchu").css("top"));
+   $(".tanchu").fadeTo(200, 0.5);
+  })
+  $(document).mousemove(function(e){
+   if(i == 1){
+    x2 = e.pageX - x;
+    y2 = e.pageY - y;
+    if(x2 < 0){x2 = 0;}
+    if(x2 > 800){x2 = 800;}
+    if(y2 < 0){y2 = 0;}
+    if(y2 > 700){y2 = 700;}
+    $(".tanchu").css({top:y2,left:x2});
+   }
+  }).mouseup(function(){ 
+    i=0; 
+    $(".tanchu").fadeTo(200, 1);
+   })
+ })
+ //拖拽窗口end
+ 
+ //iframe
+
+	 //弹出层
+ function tanchuceng(width,height,tit,url){
+  var winWinth = $(window).width(),winHeight = $(document).height();
+  $("body").append("<div class='winbj'></div>");
+  $("body").append("<div class='tanChu'><div class='tanChutit'><span class='tanchuTxt'>"+tit+"</span><span class='tanchuClose'>关闭</span></div><iframe class='winIframe' frameborder='0' hspace='0' src="+ url +"></iframe></div>");
+  $(".winbj").css({width:winWinth,height:winHeight,background:"#000",position:"absolute",left:"0",top:"0"});
+  $(".winbj").fadeTo(0, 0.5);
+  var tanchuLeft = $(window).width()/2 - width/2;
+  var tanchuTop = $(window).height()/2 - height/2 + $(window).scrollTop();
+  $(".tanChu").css({width:width,height:height,border:"3px #ccc solid",left:tanchuLeft,top:tanchuTop,background:"#fff",position:"absolute"});
+  $(".tanChutit").css({width:width,height:"25px","border-bottom":"1px #ccc solid",background:"#eee","line-height":"25px"});
+  $(".tanchuTxt").css({"text-indent":"5px","float":"left","font-size":"14px"});
+  $(".tanchuClose").css({"width":"40px","float":"right","font-size":"12px","color":"#666","cursor":"pointer"});
+  var winIframeHeight = height - 26;
+  $(".winIframe").css({width:width,height:winIframeHeight,"border-bottom":"1px #ccc solid",background:"#ffffff"});
+  $(".tanchuClose").hover(
+   function(){
+    $(this).css("color","#333");
+   },function(){
+    $(this).css("color","#666");
+   }
+  );
+  $(".tanchuClose").click(function(){
+   $(".winbj").remove();
+   $(".tanChu").remove();
+  });
+ }
+ //iframe弹出层end
+ 
+ //模仿alert
+ function mfalert(txt){
+  var width = $(".mfalert").width() + 20;
+  var mfalertLeft = $(window).width()/2 - width/2;
+  var mfalertTop = $(window).height()/2 - 30/2 + $(window).scrollTop();
+  $("body").append("<div class='mfAlert'>"+txt+"</div>");
+  $(".mfAlert").css({width:width,height:"30px",border:"1px #333 solid",left:mfalertLeft,top:mfalertTop,background:"#ccc",position:"absolute","text-align":"center","line-height":"30px"});
+  setTimeout("$('.mfAlert').remove()",3000);
+ }
+ //模仿alert end
+</script>
+<style>
+*{padding:0;margin:0;font-size:12px;}
+.layout{width:1000px;height:800px;border:1px #000 solid;border-width:0 1px;margin:0 auto;padding:1px; position:relative;}
+.box{width:200px;height:100px;border:1px #ccc solid; position:absolute;left:100px;top:20px;}
+.box .tit{height:20px;width:100%;background:#eee;border-bottom:1px #ccc solid; line-height:20px; text-indent:10px;}
+.box .lis{line-height:20px; text-indent:5px;}
+.tanchu{position:absolute; left:20px;top:20px;}
+.mfalert{position:absolute; left:20px;top:50px;}
+</style>
+</head>
+<body>
+<div class="layout">
+ <a href="#" class="tanchu" onclick="tanchuceng(600,300,'我是中文','url')">弹出层</a>
+ <div class="box">
+     <div class="tit">点住我移动</div>
+        <div class="lis">我是可移动的</div>
+    </div>
+    <a href="#" class="mfalert" onclick="mfalert('3秒就没了')">点我输出</a>
+</div>
+</body>
+</html>
