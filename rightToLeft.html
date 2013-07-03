@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>rightToLeft</title>
+		    <style type="text/css">
+			.imglist21 { overflow: hidden; width: 998px;  }
+.imglist21 li { display: inline; float: left; width: 110px; height: 150px; margin-right: 20px;margin-top: 20px; overflow: hidden; }
+.imglist21 li a { overflow: hidden; display: block; float: left; width: 110px; height: 150px; color: #61646b; }
+.imglist21 li a img { display: block; float: left; width: 106px; height: 81px; margin: 0 auto; padding: 1px; border: 1px solid #DDD; background: #FFF; }
+.imglist21 li a:hover img { border-color: #c00;}
+.imglist21 li span.imgtit { display: block; float: left; width: 110px; height: 32px; line-height: 32px; cursor: pointer; text-align:center;}
+.imglist21 li a:hover { color: #C00; }
+				<!--
+				#demo {overflow:hidden;width:1000px; margin-left:10px; height:150px;}
+				#indemo {float: left;width: 800%;}
+				#demo1 {float: left;}
+				#demo2 {float: left;}
+				-->
+				</style>
+</head>
+
+<body>
+<ul class="imglist21">
+                <div class="title"><img src="/images/title_ico.gif" height="12" width="21"><span>产品展示</span></div>
+				<div id="demo">
+				<div id="indemo">
+				<div id="demo1">
+            <li><a href="view.asp?id=80"><img src="/uploads/20130606/20130606224930363036.jpg" alt="复合防静电地板"><span class="imgtit">复合防静电地板</span></a></li>
+            <li><a href="view.asp?id=81"><img src="/uploads/20130606/20130606225087538753.jpg" alt="硫酸钙活动地板"><span class="imgtit">硫酸钙活动地板</span></a></li>
+            <li><a href="view.asp?id=84"><img src="/uploads/image/20130607/20130607193992689268.jpg" alt="防静电地板支架"><span class="imgtit">防静电地板支架</span></a></li>
+            <li><a href="view.asp?id=85"><img src="/uploads/image/20130607/20130607194267896789.jpg" alt="PVC贴面"><span class="imgtit">PVC贴面</span></a></li>
+            <li><a href="view.asp?id=86"><img src="/uploads/image/20130607/20130607194479057905.gif" alt="仿进口防静电地板"><span class="imgtit">仿进口防静电地板</span></a></li>
+            <li><a href="view.asp?id=87"><img src="/uploads/image/20130608/20130608212041394139.gif" alt="直铺式永久性PVC防"><span class="imgtit">直铺式永久性PVC防</span></a></li>
+            <li><a href="view.asp?id=88"><img src="/uploads/image/20130608/20130608214144624462.gif" alt="德国美露复合防静电地"><span class="imgtit">德国美露复合防静电地</span></a></li>
+            <li><a href="view.asp?id=89"><img src="/uploads/image/20130608/20130608215425202520.jpg" alt="沈飞全钢防静电地"><span class="imgtit">沈飞全钢防静电地</span></a></li>
+				</div>
+				<div id="demo2">
+            <li><a href="view.asp?id=80"><img src="/uploads/20130606/20130606224930363036.jpg" alt="复合防静电地板"><span class="imgtit">复合防静电地板</span></a></li>
+            <li><a href="view.asp?id=81"><img src="/uploads/20130606/20130606225087538753.jpg" alt="硫酸钙活动地板"><span class="imgtit">硫酸钙活动地板</span></a></li>
+            <li><a href="view.asp?id=84"><img src="/uploads/image/20130607/20130607193992689268.jpg" alt="防静电地板支架"><span class="imgtit">防静电地板支架</span></a></li>
+            <li><a href="view.asp?id=85"><img src="/uploads/image/20130607/20130607194267896789.jpg" alt="PVC贴面"><span class="imgtit">PVC贴面</span></a></li>
+            <li><a href="view.asp?id=86"><img src="/uploads/image/20130607/20130607194479057905.gif" alt="仿进口防静电地板"><span class="imgtit">仿进口防静电地板</span></a></li>
+            <li><a href="view.asp?id=87"><img src="/uploads/image/20130608/20130608212041394139.gif" alt="直铺式永久性PVC防"><span class="imgtit">直铺式永久性PVC防</span></a></li>
+            <li><a href="view.asp?id=88"><img src="/uploads/image/20130608/20130608214144624462.gif" alt="德国美露复合防静电地"><span class="imgtit">德国美露复合防静电地</span></a></li>
+            <li><a href="view.asp?id=89"><img src="/uploads/image/20130608/20130608215425202520.jpg" alt="沈飞全钢防静电地"><span class="imgtit">沈飞全钢防静电地</span></a></li>
+				</div>
+				</div>
+				</div>
+				<script>
+				<!--
+				var speed=10; //数字越大速度越慢
+				var tab=document.getElementById("demo");
+				var tab1=document.getElementById("demo1");
+				var tab2=document.getElementById("demo2");
+				tab2.innerHTML=tab1.innerHTML;
+				function Marquee(){
+				if(tab2.offsetWidth-tab.scrollLeft<=0)
+				tab.scrollLeft-=tab1.offsetWidth
+				else{
+				tab.scrollLeft++;
+				}
+				}
+				var MyMar=setInterval(Marquee,speed);
+				tab.onmouseover=function() {clearInterval(MyMar)};
+				tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
+				-->
+				</script> 
+        </ul>
+</body>
+</html>
